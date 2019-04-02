@@ -1,0 +1,4 @@
+ansible-playbook -i inventory playbook.yml
+
+ssh 192.168.56.55(56) -l devops  # -i ~/.ssh/id_rsa   your local user
+

@@ -1,0 +1,1 @@
+kubeadm join 192.168.56.55:6443 --token hxms8r.ntnzf1qrfnrdstor     --discovery-token-ca-cert-hash sha256:726b4feebb467033b7aee6b2b0e2eafee86b21bd0b2cb1a04771e05acc442c9d 

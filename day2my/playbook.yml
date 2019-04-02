@@ -1,0 +1,47 @@
+- hosts: all
+  name: common, devops_user, docker
+  pre_tasks:
+   - name: shell
+     debug:
+        msg: "Warning. Tasks is working:" 
+
+  tasks:
+  - name: install soft
+    package: name=mc state=installed
+
+  roles: 
+   - common
+   - devops_user
+   - docker
+  become: yes
+
+
+
+- name: k8s-base
+  hosts: all
+  vars:
+    user: devops
+  roles:
+    - k8s-base   
+  become: yes
+
+- name: k8s-master
+  hosts: masters
+  roles:
+    - k8s-master
+  become: yes
+
+- name: k8s-worker
+  hosts: workers
+  roles:
+    - k8s-worker
+  become_user: devops
+
+- hosts: masters
+  post_tasks:
+  - name: Set role 
+    become: yes
+    become_user: devops
+    shell: kubectl label node worker-node node-role.kubernetes.io/worker=worker
+
+  

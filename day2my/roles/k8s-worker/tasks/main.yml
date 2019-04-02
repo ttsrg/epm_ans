@@ -1,0 +1,14 @@
+---
+# tasks file for k8s-worker
+
+- name: Reset cluster
+  shell: sudo kubeadm reset --force
+
+ 
+- name:  join2cluster
+  shell: bash /vagrant/join_cluster
+  register: output
+  args:
+    creates:  /etc/kubernetes/bootstrap-kubelet.conf
+  failed_when: "'already exists' in output.stdout"
+  

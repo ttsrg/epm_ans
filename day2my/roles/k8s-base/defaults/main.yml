@@ -1,0 +1,5 @@
+---
+install_packets:
+  - kubectl
+  - kubeadm
+  - kubelet

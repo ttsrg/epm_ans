@@ -1,0 +1,8 @@
+---
+- name: user_facts
+  copy:
+    content: >
+      {
+        "User ssh sudo": "{{ user }}"
+      }
+    dest: /etc/ansible/facts.d/user.fact
